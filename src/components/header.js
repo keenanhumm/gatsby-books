@@ -1,35 +1,45 @@
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useContext } from "react"
+import { FirebaseContext } from "../firebase"
+import LogoutLink from "./styled/LogoutLink"
+import AppHeader from "./styled/AppHeader"
+import HeaderContent from "./styled/HeaderContent"
+import UserInfo from "./styled/UserInfo"
+import LoginLink from "./styled/LoginLink"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-)
+const Header = ({ siteTitle }) => {
+  const { firebase, user } = useContext(FirebaseContext)
+
+  const handleLogout = () => {
+    firebase.logout().then(() => navigate("/login"))
+  }
+
+  return (
+    <AppHeader>
+      <HeaderContent>
+        <h1>
+          <Link to="/">{siteTitle}</Link>
+        </h1>
+        <div>
+          {!!user && !!user.email && (
+            <UserInfo>
+              Hello, {user.email}
+              <div>
+                <LogoutLink onClick={handleLogout}>Log out</LogoutLink>
+              </div>
+            </UserInfo>
+          )}
+          {(!user || !user.email) && (
+            <LoginLink>
+              <Link to="/login">Log in</Link>
+            </LoginLink>
+          )}
+        </div>
+      </HeaderContent>
+    </AppHeader>
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,

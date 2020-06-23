@@ -1,10 +1,25 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    title: `Beyond Words`,
+    description: `Living and reading together.`,
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-remote-images",
+      options: {
+        nodeType: "Book",
+        imagePath: "coverImageUrl",
+      },
+    },
+    "gatsby-plugin-styled-components",
+    {
+      resolve: "gatsby-firesource",
+      options: {
+        credential: require("./firebase.json"),
+        types: require("./types.js"),
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
