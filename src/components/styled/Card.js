@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export default styled.section`
+export const Card = styled.section`
   margin: 2rem 1rem;
   padding: 2rem;
   background-color: #ffffff;

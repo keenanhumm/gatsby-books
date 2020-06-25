@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export default styled.div`
+export const BookCoverImage = styled.div`
   max-width: 200px;
 
   img {

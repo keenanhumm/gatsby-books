@@ -2,8 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 
 import BookItem from "./BookItem"
-import Card from "./styled/Card"
-import LinkButton from "./styled/LinkButton"
+import { Card, LinkButton } from "./styled"
 
 export default function BookPreview(props) {
   const { book } = props

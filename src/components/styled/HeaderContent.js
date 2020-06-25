@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export default styled.div`
+export const HeaderContent = styled.div`
   margin: 0px auto;
   // max-width: 960px;
   padding: 1.45rem 1.0875rem;

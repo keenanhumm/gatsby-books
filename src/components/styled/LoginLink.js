@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export default styled.span`
+export const LoginLink = styled.span`
   margin: auto 0;
   > a {
     color: white;

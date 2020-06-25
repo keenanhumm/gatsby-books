@@ -11,8 +11,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
-import AppContent from "../components/styled/AppContent"
-import App from "./styled/App"
+import { AppContent, App } from "./styled"
 import { FirebaseContext, useAuth } from "../firebase"
 
 const Layout = ({ children }) => {

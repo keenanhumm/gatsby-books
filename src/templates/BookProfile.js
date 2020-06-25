@@ -1,6 +1,6 @@
 import React from "react"
 import BookItem from "../components/BookItem"
-import Card from "../components/styled/Card"
+import { Card } from "../components/styled"
 import { graphql } from "gatsby"
 
 export default function BookProfile(props) {

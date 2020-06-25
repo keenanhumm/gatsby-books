@@ -2,14 +2,18 @@ import { Link, navigate } from "gatsby"
 import PropTypes from "prop-types"
 import React, { useContext } from "react"
 import { FirebaseContext } from "../firebase"
-import LogoutLink from "./styled/LogoutLink"
-import AppHeader from "./styled/AppHeader"
-import HeaderContent from "./styled/HeaderContent"
-import UserInfo from "./styled/UserInfo"
-import LoginLink from "./styled/LoginLink"
+import {
+  LogoutLink,
+  AppHeader,
+  HeaderContent,
+  UserInfo,
+  LoginLink,
+  Divider,
+} from "./styled"
 
 const Header = ({ siteTitle }) => {
   const { firebase, user } = useContext(FirebaseContext)
+  console.log({ user })
 
   const handleLogout = () => {
     firebase.logout().then(() => navigate("/login"))
@@ -24,7 +28,7 @@ const Header = ({ siteTitle }) => {
         <div>
           {!!user && !!user.email && (
             <UserInfo>
-              Hello, {user.email}
+              Hello, {user.username || user.email}
               <div>
                 <LogoutLink onClick={handleLogout}>Log out</LogoutLink>
               </div>
@@ -33,6 +37,8 @@ const Header = ({ siteTitle }) => {
           {(!user || !user.email) && (
             <LoginLink>
               <Link to="/login">Log in</Link>
+              <Divider />
+              <Link to="/register">Register</Link>
             </LoginLink>
           )}
         </div>

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export default styled.div`
+export const UserInfo = styled.div`
   color: white;
   text-align: right;
 `

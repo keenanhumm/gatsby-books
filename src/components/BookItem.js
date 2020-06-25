@@ -1,7 +1,5 @@
 import React from "react"
-import BookCoverImage from "./styled/BookCoverImage"
-import BookPreviewDetails from "./styled/BookPreviewDetails"
-import BookItemWrapper from "./styled/BookItemWrapper"
+import { BookCoverImage, BookPreviewDetails, BookItemWrapper } from "./styled"
 import Img from "gatsby-image"
 
 export default function BookItem(props) {
