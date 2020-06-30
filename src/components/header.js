@@ -13,7 +13,6 @@ import {
 
 const Header = ({ siteTitle }) => {
   const { firebase, user } = useContext(FirebaseContext)
-  console.log({ user })
 
   const handleLogout = () => {
     firebase.logout().then(() => navigate("/login"))

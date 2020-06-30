@@ -33,6 +33,14 @@ class Firebase {
   async logout() {
     await this.auth.signOut()
   }
+
+  subscribeToBookComments({ bookId, onSnapshot }) {
+    const book = this.db.collection("books").doc(bookId)
+    return this.db
+      .collection("comments")
+      .where("book", "==", book)
+      .onSnapshot(onSnapshot)
+  }
 }
 
 let firebaseInstance

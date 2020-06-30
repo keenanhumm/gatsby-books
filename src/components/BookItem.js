@@ -15,15 +15,17 @@ export default function BookItem(props) {
   } = props
 
   return (
-    <BookItemWrapper>
-      <BookCoverImage>
-        <Img fixed={fixed} />
-      </BookCoverImage>
-      <BookPreviewDetails>
-        <h2>{title}</h2>
-        <h5>by {author.name}</h5>
-        <p>{summary}</p>
-      </BookPreviewDetails>
-    </BookItemWrapper>
+    <>
+      <BookItemWrapper>
+        <BookCoverImage>
+          <Img fixed={fixed} />
+        </BookCoverImage>
+        <BookPreviewDetails>
+          <h2>{title}</h2>
+          <h5>by {author.name}</h5>
+          <p>{summary}</p>
+        </BookPreviewDetails>
+      </BookItemWrapper>
+    </>
   )
 }
