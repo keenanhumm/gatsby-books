@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Input } from "./"
 
-export const CommentForm = styled.div`
+export const CommentForm = styled.form`
   margin-bottom: 16px;
 
   /* ${Input} {

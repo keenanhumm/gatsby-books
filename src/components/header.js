@@ -4,6 +4,7 @@ import React, { useContext } from "react"
 import { FirebaseContext } from "../firebase"
 import {
   LogoutLink,
+  AdminLink,
   AppHeader,
   HeaderContent,
   UserInfo,
@@ -13,6 +14,7 @@ import {
 
 const Header = ({ siteTitle }) => {
   const { firebase, user } = useContext(FirebaseContext)
+  console.log({ user })
 
   const handleLogout = () => {
     firebase.logout().then(() => navigate("/login"))
@@ -27,8 +29,20 @@ const Header = ({ siteTitle }) => {
         <div>
           {!!user && !!user.email && (
             <UserInfo>
-              Hello, {user.username || user.email}
+              Hello, <strong>{user.username || user.email}</strong>
               <div>
+                {!!user.isAdmin && (
+                  <>
+                    <AdminLink>
+                      <Link to="/add-author">Add author</Link>
+                    </AdminLink>
+                    <Divider />
+                    <AdminLink>
+                      <Link to="/add-book">Add book</Link>
+                    </AdminLink>
+                    <Divider />
+                  </>
+                )}
                 <LogoutLink onClick={handleLogout}>Log out</LogoutLink>
               </div>
             </UserInfo>

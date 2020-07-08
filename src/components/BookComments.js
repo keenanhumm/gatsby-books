@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useCallback } from "react"
 import { CommentsList, CommentForm, Button, Input } from "./styled"
+import { formatDate } from "../utils"
 
 export default function BookComments(props) {
   const { bookId, firebase } = props
 
   const [comments, setComments] = useState([])
+  const [commentText, setCommentText] = useState("")
 
   useEffect(() => {
     const unsubscribe = firebase.subscribeToBookComments({
@@ -26,16 +28,37 @@ export default function BookComments(props) {
     }
   }, [bookId, firebase])
 
+  const handleSubmitComment = e => {
+    e.preventDefault()
+    firebase.postComment({
+      text: commentText,
+      bookId,
+    })
+    setCommentText("")
+  }
+
+  const handleCommentChange = useCallback(e => {
+    e.persist()
+    setCommentText(e.target.value)
+  }, [])
+
   return (
     <>
-      <CommentForm>
+      <CommentForm onSubmit={handleSubmitComment}>
         <h3>Comments</h3>
-        <Input />
-        <Button right>Post comment</Button>
+        <Input
+          placeholder="What are your thoughts on this title?"
+          onChange={handleCommentChange}
+          value={commentText}
+        />
+        <Button right type="submit">
+          Post comment
+        </Button>
       </CommentForm>
       {comments.map(comment => (
         <CommentsList key={comment.id}>
-          <strong>{comment.username}</strong>
+          <strong>{comment.username}</strong> -{" "}
+          <small>{formatDate(comment.dateCreated)}</small>
           <div>{comment.text}</div>
         </CommentsList>
       ))}
