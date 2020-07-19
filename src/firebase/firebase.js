@@ -24,10 +24,20 @@ class Firebase {
     return this.auth.signInWithEmailAndPassword(email, password)
   }
 
-  async createAuthor({ authorName }) {
+  async createAuthor({ name }) {
     const createAuthorCallable = this.functions.httpsCallable("createAuthor")
 
-    return createAuthorCallable({ authorName })
+    return createAuthorCallable({ name })
+  }
+
+  async createBook({ title, authorId, coverImage, summary }) {
+    const createBookCallable = this.functions.httpsCallable("createBook")
+
+    return createBookCallable({ title, authorId, coverImage, summary })
+  }
+
+  async getAuthors() {
+    return this.db.collection("authors").get()
   }
 
   async register({ email, password, username }) {
